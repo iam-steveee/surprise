@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090c">
+<meta name="description" content="A small interactive birthday surprise by Steve.">
+<title>Your Day — Birthday Surprise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"></div>
+<div class="theme-glow" aria-hidden="true"></div>
+
+<div class="watermark" id="watermark">
+  Made By Steve <span>with ❤️</span>
+  <small>iam._.steve</small>
+  <em>Dm Steve and Send Friend Request If You Like That</em>
+</div>
+
+<main>
+  <section class="step active" id="welcome">
+    <div class="welcome">
+      <div class="kicker">A SMALL CELEBRATION</div>
+      <h1>Made By Steve <em>with ❤️</em></h1>
+      <p>Welcome. A small interactive birthday experience is waiting for you.</p>
+      <button type="button" class="gold" id="enterWelcome">Continue to Website →</button>
+    </div>
+  </section>
+
+  <section class="step" id="nameStep">
+    <div class="panel">
+      <div class="counter">01 / 04</div>
+      <div class="kicker">FIRST THING FIRST</div>
+      <h2>What's your name?</h2>
+      <p>We'll use it to personalize the experience.</p>
+      <input id="name" maxlength="32" autocomplete="name" placeholder="Enter your name...">
+      <button type="button" class="gold next" id="nameContinue" disabled>Continue →</button>
+    </div>
+  </section>
+
+  <section class="step" id="dateStep">
+    <div class="panel date-panel">
+      <div class="counter">02 / 04</div>
+      <div class="kicker">YOUR DATE</div>
+      <h2>When did your story begin?</h2>
+      <p>Pick your birth year first, then your month and day. No century-long tapping marathon.</p>
+
+      <button type="button" class="datebox" id="dateDisplay">
+        Select your date of birth
+        <span>▦</span>
+      </button>
+
+      <div class="calendar" id="calendar" aria-hidden="true">
+        <div class="picker-top">
+          <button type="button" class="icon-btn" id="dateBack" aria-label="Close date picker">×</button>
+          <strong>Select Date of Birth</strong>
+          <span class="picker-placeholder"></span>
+        </div>
+
+        <div class="picker-step active" id="yearPicker">
+          <div class="picker-label">STEP 1 · YEAR</div>
+          <div class="year-search-row">
+            <input id="yearSearch" inputmode="numeric" maxlength="4" placeholder="Type a year, e.g. 1983">
+            <button type="button" class="ghost small" id="yearSearchBtn">Go</button>
+          </div>
+          <div class="year-grid" id="yearGrid"></div>
+        </div>
+
+        <div class="picker-step" id="monthPicker">
+          <div class="picker-label">STEP 2 · MONTH</div>
+          <div class="chosen-year" id="chosenYear"></div>
+          <div class="month-grid" id="monthGrid"></div>
+          <button type="button" class="ghost back-step" id="backToYear">← Change year</button>
+        </div>
+
+        <div class="picker-step" id="dayPicker">
+          <div class="picker-label">STEP 3 · DAY</div>
+          <div class="day-head">
+            <button type="button" class="icon-btn" id="backToMonth" aria-label="Change month">‹</button>
+            <strong id="monthLabel"></strong>
+            <button type="button" class="icon-btn" id="nextMonth" aria-label="Next month">›</button>
+          </div>
+          <div class="week"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+          <div class="days" id="days"></div>
+        </div>
+      </div>
+
+      <button type="button" class="gold next" id="dateContinue" disabled>Continue →</button>
+    </div>
+  </section>
+
+  <section class="step" id="themeStep">
+    <div class="panel">
+      <div class="counter">03 / 04</div>
+      <div class="kicker">YOUR GENDER</div>
+      <h2>Choose your gender.</h2>
+      <p>Your choice changes the full visual atmosphere, colours, decorations, and birthday artwork.</p>
+
+      <div class="themes">
+        <button type="button" class="theme female" data-theme="female" aria-pressed="false">
+          <div class="theme-art sticker-wall female-wall" aria-hidden="true">
+            <img src="assets/female/teddy.png" alt="Cute teddy sticker">
+            <img src="assets/female/bow.svg" alt="Pink bow sticker">
+            <img src="assets/female/cake.svg" alt="Birthday cake sticker">
+            <img src="assets/female/heart.svg" alt="Pink heart sticker">
+            <img src="assets/female/flower.svg" alt="Pink flower sticker">
+            <img src="assets/female/butterfly.svg" alt="Purple butterfly sticker">
+            <img src="assets/female/sparkle.svg" alt="Golden sparkle sticker">
+          </div>
+          <div class="theme-copy">
+            <strong>Female</strong>
+            <span>Pink · Rose · Lavender · Cute sticker mood</span>
+          </div>
+        </button>
+
+        <button type="button" class="theme male" data-theme="male" aria-pressed="false">
+          <div class="theme-art sticker-wall male-wall" aria-hidden="true">
+            <img src="assets/male/car.png" alt="Blue car sticker">
+            <img src="assets/male/controller.svg" alt="Game controller sticker">
+            <img src="assets/male/rocket.svg" alt="Rocket sticker">
+            <img src="assets/male/joystick.svg" alt="Joystick sticker">
+            <img src="assets/male/football.svg" alt="Football sticker">
+            <img src="assets/male/car-small.svg" alt="Sports car sticker">
+            <img src="assets/male/shield.svg" alt="Blue shield sticker">
+          </div>
+          <div class="theme-copy">
+            <strong>Male</strong>
+            <span>Blue · Navy · Cyan · Gaming &amp; adventure mood</span>
+          </div>
+        </button>
+      </div>
+
+      <button type="button" class="gold next" id="themeContinue" disabled>Continue →</button>
+    </div>
+  </section>
+
+  <section class="step" id="checkingStep">
+    <div class="checking">
+      <div class="loader"></div>
+      <div class="kicker">FINAL CHECK</div>
+      <h2 id="checkingText">Preparing your experience...</h2>
+      <div class="checkline"><i id="checkbar"></i></div>
+    </div>
+  </section>
+
+  <section class="step" id="birthdayStep">
+    <div class="panel result">
+      <div class="result-decor sticker-result">
+        <div class="female-result female-only" aria-hidden="true">
+          <img src="assets/female/heart.svg" alt="">
+          <img src="assets/female/cake.svg" alt="">
+          <img src="assets/female/butterfly.svg" alt="">
+          <img src="assets/female/sparkle.svg" alt="">
+          <img src="assets/female/sparkles.png" alt="">
+        </div>
+        <div class="male-result male-only" aria-hidden="true">
+          <img src="assets/male/controller.svg" alt="">
+          <img src="assets/male/car-small.svg" alt="">
+          <img src="assets/male/rocket.svg" alt="">
+          <img src="assets/male/shield.svg" alt="">
+          <img src="assets/male/pc.png" alt="">
+        </div>
+      </div>
+      <div class="status">TODAY IS YOUR DAY</div>
+      <h2>Happy Birthday, <span id="bName"></span>!</h2>
+      <p id="birthdayIntro"></p>
+      <div class="stats">
+        <div><small>AGE</small><strong id="age"></strong></div>
+        <div><small>DAYS LIVED</small><strong id="daysLived"></strong></div>
+        <div><small>NEXT CHAPTER</small><strong>NOW</strong></div>
+      </div>
+      <button type="button" class="gold next" id="birthdayContinue">Continue →</button>
+    </div>
+  </section>
+
+  <section class="step" id="normalStep">
+    <div class="panel result">
+      <div class="status">DATE CHECKED</div>
+      <h2>Not today, <span id="nName"></span>.</h2>
+      <p>Your birthday isn't today. That doesn't mean the experience ends here.</p>
+      <div class="countdown-card">
+        <div class="kicker">NEXT BIRTHDAY</div>
+        <strong id="countdown">—</strong>
+        <small>until your next birthday</small>
+      </div>
+      <button type="button" class="gold next" id="normalContinue">Continue →</button>
+    </div>
+  </section>
+
+  <section class="step" id="messageStep">
+    <div class="panel prose">
+      <div class="kicker">A MESSAGE FOR YOU</div>
+      <h2>Today is yours.</h2>
+      <p>You made it through another year, and somehow, here you are.</p>
+      <p>You've changed, learned, laughed, struggled, met people, lost people, and collected countless little moments that became part of your story.</p>
+      <p>Today isn't just about getting older. It's about everything that brought you here.</p>
+      <p><strong>So take a moment.</strong></p>
+      <p>Forget the countdowns, the plans, and everything waiting for tomorrow. For today, just enjoy being here.</p>
+      <p>Make a wish. Keep it to yourself. And then go make the next chapter worth remembering.</p>
+      <p><strong>Happy Birthday, <span id="mName"></span>. 🎂</strong></p>
+      <p><em>Your next chapter starts today.</em></p>
+      <button type="button" class="gold next" id="messageContinue">Continue →</button>
+    </div>
+  </section>
+
+  <section class="step" id="wishStep">
+    <div class="panel center">
+      <div class="kicker">ONE SMALL RITUAL</div>
+      <h2>Make a wish.</h2>
+      <p>Don't type it. Don't tell anyone. Just keep it yours.</p>
+      <div class="wish-orb"></div>
+      <button type="button" class="gold" id="wish">✦ Make My Wish</button>
+      <div class="wish-result" id="wishResult"></div>
+      <button type="button" class="ghost" id="wishContinue" hidden>Continue →</button>
+    </div>
+  </section>
+
+  <section class="step" id="normalFunStep">
+    <div class="panel">
+      <div class="kicker">WHILE YOU WAIT</div>
+      <h2>There's still something to discover.</h2>
+      <p>Your next birthday deserves a proper countdown.</p>
+      <div class="facts">
+        <div><small>YOUR AGE</small><strong id="normalAge"></strong></div>
+        <div><small>YOUR NEXT DATE</small><strong id="nextBirthdayDate"></strong></div>
+        <div><small>DAY</small><strong id="nextDay"></strong></div>
+      </div>
+      <p class="tiny-note" id="dateJoke"></p>
+      <button type="button" class="gold" id="normalFunContinue">Continue →</button>
+    </div>
+  </section>
+
+  <section class="step" id="finalStep">
+    <div class="panel final">
+      <div class="kicker">YOU MADE IT</div>
+      <h2 id="finalTitle">Your card is ready.</h2>
+      <p id="finalText"></p>
+      <div class="share">
+        <label>YOUR SHARE LINK</label>
+        <div class="sharebox"><input id="shareUrl" readonly><button type="button" id="copy">Copy</button></div>
+        <button type="button" class="gold" id="share">Share Your Surprise →</button>
+        <small>https://iam-steveee.github.io/surprise</small>
+      </div>
+      <button type="button" class="ghost" id="again">Start Again</button>
+    </div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
